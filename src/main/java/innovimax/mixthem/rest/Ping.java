@@ -11,7 +11,7 @@ public class Ping {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String ping() {
-        return "Welcome to MixThem REST application!";
+        return "Welcome to MixThem REST services!";
     }
 
 }
