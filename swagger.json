@@ -29,7 +29,7 @@
     "paths": {
         "/api/ping": {
             "get": {
-                "description": "Ping the service.\n",
+                "description": "Ping the service.",
                 "operationId": "pingService",
                 "produces": [
                     "text/plain",
@@ -281,6 +281,13 @@
                             "line",
                             "cell"
                         ]
+                    },
+                    {
+                        "name": "sep",
+                        "in": "query",
+                        "description": "The separation sequence",
+                        "required": false,
+                        "type": "string"
                     },
                     {
                         "name": "file1",
@@ -543,6 +550,13 @@
                             "line",
                             "cell"
                         ]
+                    },
+                    {
+                        "name": "sep",
+                        "in": "query",
+                        "description": "The separation sequence",
+                        "required": false,
+                        "type": "string"
                     },
                     {
                         "name": "text1",
