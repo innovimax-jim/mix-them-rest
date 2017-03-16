@@ -216,6 +216,11 @@ paths:
             - char
             - line
             - cell
+        - name: sep
+          in: query
+          description: The separation sequence
+          required: false
+          type: string
         - name: file1
           in: formData
           description: The first file to mix
@@ -418,7 +423,7 @@ paths:
           in: query
           description: The separation sequence
           required: false
-          type: string  
+          type: string            
         - name: text1
           in: formData
           description: The first text to mix
