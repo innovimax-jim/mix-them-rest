@@ -1,0 +1,444 @@
+swagger: '2.0'
+info:
+  version: "1.0.0"
+  title: MixThem
+  description: Mix files together
+  contact:
+    name: Innovimax SARL
+    url: http://www.innovimax.fr
+    email: innovimax@gmail.com
+host: localhost
+schemes:
+  - http
+  - https
+basePath: /mixthem
+consumes:
+    - application/x-www-form-urlencoded
+    - multipart/form-data
+    - text/plain
+produces:
+    - application/octet-stream
+    - text/plain
+    - application/json
+paths:
+  /api/ping:
+    get:
+      description: Ping the service.
+      operationId: pingService
+      produces:
+        - text/plain
+        - application/json
+      responses:
+        200:
+          description: Welcome!
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/file/add:
+    post:
+      description: |
+        Gets the result of an add operation on two files.
+      operationId: addFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/octet-stream
+        - application/json
+      parameters:
+        - name: file1
+          in: formData
+          description: The first file to mix
+          required: true
+          type: file
+        - name: file2
+          in: formData
+          description: The second file to mix
+          required: true
+          type: file
+      responses:
+        200:
+          description: Files mixed
+          schema:
+            type: file
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/file/alt-{type}:
+    post:
+      description: |
+        Gets the result of an alternate operation on two files.
+        
+        There are 2 types of alternate operation provided:
+        - __'alt-char'__ to alternate characters
+        - __'atl-line'__ to alternate lines
+      operationId: altFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/octet-stream
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: The type of alternation
+          type: string
+          enum:
+            - char
+            - line
+        - name: file1
+          in: formData
+          description: The first file to mix
+          required: true
+          type: file
+        - name: file2
+          in: formData
+          description: The second file to mix
+          required: true
+          type: file
+      responses:
+        200:
+          description: Files mixed
+          schema:
+            type: file
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/file/random-alt:
+    post:
+      description: |
+        Gets the result of a random alternate operation on two files.
+        
+        The alternation is randomly based on a seed for reproducability.
+      operationId: randomAltFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/octet-stream
+        - application/json
+      parameters:
+        - name: seed
+          in: query
+          description: The seed value to reproduce random alternation
+          required: false
+          type: integer
+          format: int32
+        - name: file1
+          in: formData
+          description: The first file to mix
+          required: true
+          type: file
+        - name: file2
+          in: formData
+          description: The second file to mix
+          required: true
+          type: file
+      responses:
+        200:
+          description: Files mixed
+          schema:
+            type: file
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/file/join:
+    post:
+      description: |
+        Gets the result of 'join' operation on two files.
+        
+        Default join column index is set to 1 for both files.
+      operationId: joinFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/octet-stream
+        - application/json
+      parameters:
+        - name: col1
+          in: query
+          description: The join column index in first file
+          required: false
+          type: integer
+          format: int32
+        - name: col2
+          in: query
+          description: The join column index in second file
+          required: false
+          type: integer
+          format: int32
+        - name: file1
+          in: formData
+          description: The first file to mix
+          required: true
+          type: file
+        - name: file2
+          in: formData
+          description: The second file to mix
+          required: true
+          type: file
+      responses:
+        200:
+          description: Files mixed
+          schema:
+            type: file
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/file/zip-{type}:
+    post:
+      description: |
+        Gets the result of a zip operation on two files.
+        
+        There are 3 types of zip operation provided:
+        - __'zip-char'__ to zip characters
+        - __'zip-line'__ to zip lines
+        - __'zip-cell'__ to zip line cells
+      operationId: zipFromFile
+      consumes:
+        - multipart/form-data
+      produces:
+        - application/octet-stream
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: The type of zipping
+          type: string
+          enum:
+            - char
+            - line
+            - cell
+        - name: file1
+          in: formData
+          description: The first file to mix
+          required: true
+          type: file
+        - name: file2
+          in: formData
+          description: The second file to mix
+          required: true
+          type: file
+      responses:
+        200:
+          description: Files mixed
+          schema:
+            type: file
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/text/add:
+    post:
+      description: |
+        Gets the result of an add operation on two texts.
+      operationId: addFromText
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: text1
+          in: formData
+          description: The first text to mix
+          required: true
+          type: string
+        - name: text2
+          in: formData
+          description: The second text to mix
+          required: true
+          type: string
+      responses:
+        200:
+          description: Texts mixed
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/text/alt-{type}:
+    post:
+      description: |
+        Gets the result of an alternate operation on two texts.
+        
+        There are 2 types of alternate operation provided:
+        - __'alt-char'__ to alternate characters
+        - __'atl-line'__ to alternate lines
+      operationId: altFromText
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: The type of alternation
+          type: string
+          enum:
+            - char
+            - line
+        - name: text1
+          in: formData
+          description: The first text to mix
+          required: true
+          type: string
+        - name: text2
+          in: formData
+          description: The second text to mix
+          required: true
+          type: string
+      responses:
+        200:
+          description: Texts mixed
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/text/random-alt:
+    post:
+      description: |
+        Gets the result of a random alternate operation on two texts.
+        
+        The alternation is randomly based on a seed for reproducability.
+      operationId: randomAltFromText
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: seed
+          in: query
+          description: The seed value to reproduce random alternation
+          required: false
+          type: integer
+          format: int32
+        - name: text1
+          in: formData
+          description: The first text to mix
+          required: true
+          type: string
+        - name: text2
+          in: formData
+          description: The second text to mix
+          required: true
+          type: string
+      responses:
+        200:
+          description: Texts mixed
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/text/join:
+    post:
+      description: |
+        Gets the result of 'join' operation on two texts.
+        
+        Default join column index is set to 1 for both texts.
+      operationId: joinFromText
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: col1
+          in: query
+          description: The join column index in first file
+          required: false
+          type: integer
+          format: int32
+        - name: col2
+          in: query
+          description: The join column index in second file
+          required: false
+          type: integer
+          format: int32
+        - name: text1
+          in: formData
+          description: The first text to mix
+          required: true
+          type: string
+        - name: text2
+          in: formData
+          description: The second text to mix
+          required: true
+          type: string
+      responses:
+        200:
+          description: Texts mixed
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+  /api/text/zip-{type}:
+    post:
+      description: |
+        Gets the result of a zip operation on two texts.
+        
+        There are 3 types of zip operation provided:
+        - __'zip-char'__ to zip characters
+        - __'zip-line'__ to zip lines
+        - __'zip-cell'__ to zip line cells
+      operationId: zipFromText
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - text/plain
+        - application/json
+      parameters:
+        - name: type
+          in: path
+          required: true
+          description: The type of zipping
+          type: string
+          enum:
+            - char
+            - line
+            - cell
+        - name: text1
+          in: formData
+          description: The first text to mix
+          required: true
+          type: string
+        - name: text2
+          in: formData
+          description: The second text to mix
+          required: true
+          type: string
+      responses:
+        200:
+          description: Texts mixed
+          schema:
+            type: string
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/Error'
+definitions:
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
