@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application xmlns="http://wadl.dev.java.net/2009/02">
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:generatedBy="Jersey: 2.25.1 2017-01-19 16:23:50"/>
+    <doc xmlns:jersey="http://jersey.java.net/" jersey:hint="This is simplified WADL with user and core resources only. To get full WADL with extended resources use the query parameter detail. Link: http://localhost:8080/mixthem/api/application.wadl?detail=true"/>
+    <grammars/>
+    <resources base="http://localhost:8080/mixthem/api/">
+        <resource path="/text">
+            <resource path="/add">
+                <method id="addFromText" name="POST">
+                    <request>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text1" style="query" type="xs:string"/>
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text2" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/alt-{type}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="type" style="template" type="xs:string"/>
+                <method id="altFromText" name="POST">
+                    <request>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text1" style="query" type="xs:string"/>
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text2" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/zip-{type}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="type" style="template" type="xs:string"/>
+                <method id="zipFromText" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="sep" style="query" type="xs:string"/>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text1" style="query" type="xs:string"/>
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text2" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/join">
+                <method id="joinFromText" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="col1" style="query" type="xs:int"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="col2" style="query" type="xs:int"/>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text1" style="query" type="xs:string"/>
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text2" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/random-alt">
+                <method id="randomAltFromText" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="seed" style="query" type="xs:int"/>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text1" style="query" type="xs:string"/>
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text2" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/ping">
+            <method id="ping" name="GET">
+                <response>
+                    <representation mediaType="text/plain"/>
+                </response>
+            </method>
+        </resource>
+        <resource path="/test">
+            <resource path="/text">
+                <method id="returnText" name="POST">
+                    <request>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="text" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/file/info">
+                <method id="returnFileInfo" name="POST">
+                    <request>
+                        <representation mediaType="application/x-www-form-urlencoded">
+                            <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="file" style="query" type="xs:string"/>
+                        </representation>
+                    </request>
+                    <response>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/file/file">
+                <method id="returnFileFile" name="POST">
+                    <response>
+                        <representation mediaType="application/octet-stream"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/stream/text">
+                <method id="returnStreamText" name="POST">
+                    <request>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/stream/file">
+                <method id="returnStreamFile" name="POST">
+                    <request>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="application/octet-stream"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/file/text">
+                <method id="returnFileText" name="POST">
+                    <response>
+                        <representation mediaType="text/plain"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+        <resource path="/file">
+            <resource path="/alt-{type}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="type" style="template" type="xs:string"/>
+                <method id="altFromFile" name="POST">
+                    <request>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/join">
+                <method id="joinFromFile" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="col1" style="query" type="xs:int"/>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="col2" style="query" type="xs:int"/>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/add">
+                <method id="addFromFile" name="POST">
+                    <request>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/zip-{type}">
+                <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="type" style="template" type="xs:string"/>
+                <method id="zipFromFile" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="sep" style="query" type="xs:string"/>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+            <resource path="/random-alt">
+                <method id="randomAltFromFile" name="POST">
+                    <request>
+                        <param xmlns:xs="http://www.w3.org/2001/XMLSchema" name="seed" style="query" type="xs:int"/>
+                        <representation mediaType="multipart/form-data"/>
+                    </request>
+                    <response>
+                        <representation mediaType="text/plain"/>
+                        <representation mediaType="application/json"/>
+                    </response>
+                </method>
+            </resource>
+        </resource>
+    </resources>
+</application>
