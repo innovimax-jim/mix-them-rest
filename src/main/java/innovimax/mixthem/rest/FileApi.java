@@ -1,5 +1,8 @@
 package innovimax.mixthem.rest;
 
+import innovimax.mixthem.rest.services.ServiceFactory;
+import innovimax.mixthem.rest.services.FileService;
+
 import java.io.InputStream;
 
 import javax.ws.rs.Consumes;
@@ -21,6 +24,8 @@ import org.glassfish.jersey.media.multipart.FormDataParam;
 @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
 public class FileApi  {
 
+    private final FileService service = ServiceFactory.getFileService();
+
     @POST
     @Path("/add")
     @Consumes({MediaType.MULTIPART_FORM_DATA})
@@ -30,8 +35,8 @@ public class FileApi  {
             @FormDataParam("file1") FormDataContentDisposition file1Detail,
             @FormDataParam("file2") InputStream file2InputStream,
             @FormDataParam("file2") FormDataContentDisposition file2Detail) {
-        //TODO
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+
+        return service.addFromFile(file1InputStream, file1Detail, file2InputStream, file2Detail);
     }
 
     @POST
@@ -44,10 +49,24 @@ public class FileApi  {
             @FormDataParam("file1") FormDataContentDisposition file1Detail,
             @FormDataParam("file2") InputStream file2InputStream,
             @FormDataParam("file2") FormDataContentDisposition file2Detail) {
-        //TODO
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+     
+        return service.altFromFile(type, file1InputStream, file1Detail, file2InputStream, file2Detail);
     }
-    
+
+    @POST
+    @Path("/random-alt")
+    @Consumes({MediaType.MULTIPART_FORM_DATA})
+    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
+    public Response randomAltFromFile(
+            @FormDataParam("file1") InputStream file1InputStream,
+            @FormDataParam("file1") FormDataContentDisposition file1Detail,
+            @FormDataParam("file2") InputStream file2InputStream,
+            @FormDataParam("file2") FormDataContentDisposition file2Detail,
+            @QueryParam("seed") Integer seed) {
+        
+        return service.randomAltFromFile(file1InputStream, file1Detail, file2InputStream, file2Detail, seed);
+    }
+
     @POST
     @Path("/join")
     @Consumes({MediaType.MULTIPART_FORM_DATA})
@@ -59,22 +78,8 @@ public class FileApi  {
             @FormDataParam("file2") FormDataContentDisposition file2Detail,
             @QueryParam("col1") Integer col1,
             @QueryParam("col2") Integer col2) {
-        //TODO
-        return Response.status(Status.NOT_IMPLEMENTED).build();
-    }
-    
-    @POST
-    @Path("/random-alt")
-    @Consumes({MediaType.MULTIPART_FORM_DATA})
-    @Produces({MediaType.TEXT_PLAIN, MediaType.APPLICATION_JSON})
-    public Response randomAltFromFile(
-            @FormDataParam("file1") InputStream file1InputStream,
-            @FormDataParam("file1") FormDataContentDisposition file1Detail,
-            @FormDataParam("file2") InputStream file2InputStream,
-            @FormDataParam("file2") FormDataContentDisposition file2Detail,
-            @QueryParam("seed") Integer seed) {
-        //TODO
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        
+        return service.joinFromFile(file1InputStream, file1Detail, file2InputStream, file2Detail, col1, col2);
     }
     
     @POST
@@ -88,8 +93,8 @@ public class FileApi  {
             @FormDataParam("file2") InputStream file2InputStream,
             @FormDataParam("file2") FormDataContentDisposition file2Detail,
             @QueryParam("sep") String sep) {
-        //TODO
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        
+        return service.zipFromFile(type, file1InputStream, file1Detail, file2InputStream, file2Detail, sep);
     }
 
 }
