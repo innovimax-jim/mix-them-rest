@@ -33,8 +33,8 @@ paths:
           description: Welcome!
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/file/add:
@@ -63,8 +63,8 @@ paths:
           description: Files mixed
           schema:
             type: file
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/file/alt-{type}:
@@ -105,8 +105,8 @@ paths:
           description: Files mixed
           schema:
             type: file
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/file/random-alt:
@@ -143,8 +143,8 @@ paths:
           description: Files mixed
           schema:
             type: file
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/file/join:
@@ -187,8 +187,8 @@ paths:
           description: Files mixed
           schema:
             type: file
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/file/zip-{type}:
@@ -236,8 +236,8 @@ paths:
           description: Files mixed
           schema:
             type: file
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/text/add:
@@ -266,8 +266,8 @@ paths:
           description: Texts mixed
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/text/alt-{type}:
@@ -308,8 +308,8 @@ paths:
           description: Texts mixed
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/text/random-alt:
@@ -346,8 +346,8 @@ paths:
           description: Texts mixed
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/text/join:
@@ -390,8 +390,8 @@ paths:
           description: Texts mixed
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
   /api/text/zip-{type}:
@@ -439,8 +439,8 @@ paths:
           description: Texts mixed
           schema:
             type: string
-        default:
-          description: Unexpected error
+        400:
+          description: Request error
           schema:
             $ref: '#/definitions/Error'
 definitions:
@@ -450,5 +450,7 @@ definitions:
       code:
         type: integer
         format: int32
+      label:
+        type: string        
       message:
         type: string
