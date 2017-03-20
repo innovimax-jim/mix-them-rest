@@ -1,5 +1,6 @@
 package innovimax.mixthem.rest.request;
 
+import innovimax.mixthem.Rule;
 import innovimax.mixthem.rest.ErrorResponse;
 
 import javax.ws.rs.core.Response;
@@ -8,10 +9,19 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 public abstract class AbstractParamsCheck {
 
-    protected ErrorResponse error = null;
+    private ErrorResponse error = null;
+    private Rule rule = null;
 
     public Response getErrorResponse() {        
         return Response.status(this.error.getCode()).entity(this.error).build();            
+    }
+
+    public Rule getRule() {
+        return this.rule;
+    }
+
+    private void setRule(Rule rule) {
+        this.rule = rule;
     }
 
     protected boolean checkTextMissing(String text) {
