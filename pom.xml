@@ -85,8 +85,20 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>          
+        <dependency>
+            <groupId>com.github.Innovimax-SARL</groupId>
+            <artifactId>mix-them</artifactId>
+            <version>v0.2.0</version>
+        </dependency>  
     </dependencies>
 
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>        
+    </repositories>
+         
     <properties>
         <jdk.version>1.7</jdk.version>
         <servlet.version>2.5</servlet.version>
