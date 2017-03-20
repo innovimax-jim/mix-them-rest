@@ -85,6 +85,11 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>          
+        <dependency>
+            <groupId>com.github.Innovimax-SARL</groupId>
+            <artifactId>mix-them</artifactId>
+            <version>v0.2.0</version>
+        </dependency>  
     </dependencies>
 
     <properties>
