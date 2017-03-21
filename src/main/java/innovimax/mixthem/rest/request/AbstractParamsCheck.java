@@ -56,4 +56,49 @@ public abstract class AbstractParamsCheck {
         return true;
     }
 
+    protected boolean checkAddRule() {
+        setRule(Rule._ADD);
+        return true;
+    }
+
+    protected boolean checkAlternateRule(String type) {
+        switch (AlternateMode.findByName(type)) {
+            case _CHAR: 
+                setRule(Rule._ALT_CHAR);
+                break;
+            default:
+                setRule(Rule._ALT_LINE);
+        }
+        return true;
+    }
+
+    protected boolean checkRandomAltRule(Integer seed) {
+        setRule(Rule._RANDOM_ALT_LINE);
+        //TODO set extra param seed
+        return true;
+    }
+
+    protected boolean checkJoinRule(Integer col1, Integer col2) {
+        setRule(Rule._JOIN);
+        //TODO set extra params col1 & col2
+        return true;
+    }
+
+    protected boolean checkZipRule(String type, String sep) {
+        /*
+        switch (ZipMode.findByName(type)) {
+            case _CHAR: 
+                setRule(Rule._ZIP_CHAR);
+                break;
+            case _CELL: 
+                setRule(Rule._ZIP_CELL);
+                break;                
+            default:
+                setRule(Rule._ZIP_LINE);
+        }
+        */
+        //TODO set extra param sep
+        return true;
+    }
+
 }
