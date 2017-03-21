@@ -1,12 +1,13 @@
 package innovimax.mixthem.rest.services;
 
+import innovimax.mixthem.Rule;
 import innovimax.mixthem.rest.request.CheckFactory;
 import innovimax.mixthem.rest.request.TextParamsCheck;
 
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
-public class TextServiceImpl implements TextService {
+public class TextServiceImpl extends AbstractServiceImpl implements TextService {
 
     private final TextParamsCheck check = CheckFactory.getTextParamsCheck();
 
@@ -14,8 +15,8 @@ public class TextServiceImpl implements TextService {
     public Response addFromText(String text1, String text2) {
         if (!check.addFromText(text1, text2)) {
             return check.getErrorResponse();
-        }        
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        }   
+        return getStreamResponse(check.getRule(), text1, text2);
     }
 
     @Override
@@ -23,7 +24,7 @@ public class TextServiceImpl implements TextService {
         if (!check.altFromText(type, text1, text2)) {
             return check.getErrorResponse();        
         } 
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return getStreamResponse(check.getRule(), text1, text2);
     }
 
     @Override
