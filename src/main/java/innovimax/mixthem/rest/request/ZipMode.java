@@ -35,4 +35,13 @@ public enum ZipMode {
         return st.toString();
     }
 
+   public static ZipMode findByName(String name) {
+      for(ZipMode mode : values()){
+        if (mode.getName().equals(name)) {
+           return mode;
+        }
+      }
+      return null;
+   }
+
 }

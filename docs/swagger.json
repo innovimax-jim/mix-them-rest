@@ -47,6 +47,12 @@
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
                     }
                 }
             }
@@ -87,6 +93,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -144,6 +156,12 @@
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
                     }
                 }
             }
@@ -192,6 +210,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -251,6 +275,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -316,6 +346,12 @@
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
                     }
                 }
             }
@@ -356,6 +392,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -413,6 +455,12 @@
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
                     }
                 }
             }
@@ -461,6 +509,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
@@ -523,6 +577,12 @@
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
                     }
                 }
             }
@@ -582,6 +642,12 @@
                     },
                     "400": {
                         "description": "Request error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    },
+                    "500": {
+                        "description": "Unexpected error",
                         "schema": {
                             "$ref": "#/definitions/Error"
                         }

@@ -1,5 +1,6 @@
 package innovimax.mixthem.rest.request;
 
+import innovimax.mixthem.Rule;
 import innovimax.mixthem.rest.ErrorResponse;
 
 import javax.ws.rs.core.Response;
@@ -8,10 +9,19 @@ import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
 public abstract class AbstractParamsCheck {
 
-    protected ErrorResponse error = null;
+    private ErrorResponse error = null;
+    private Rule rule = null;
 
     public Response getErrorResponse() {        
         return Response.status(this.error.getCode()).entity(this.error).build();            
+    }
+
+    public Rule getRule() {
+        return this.rule;
+    }
+
+    private void setRule(Rule rule) {
+        this.rule = rule;
     }
 
     protected boolean checkTextMissing(String text) {
@@ -43,6 +53,51 @@ public abstract class AbstractParamsCheck {
             this.error = RequestErrorResponse.createWrongParamZipModeError();
             return false;
         }
+        return true;
+    }
+
+    protected boolean checkAddRule() {
+        setRule(Rule._ADD);
+        return true;
+    }
+
+    protected boolean checkAlternateRule(String type) {
+        switch (AlternateMode.findByName(type)) {
+            case _CHAR: 
+                setRule(Rule._ALT_CHAR);
+                break;
+            default:
+                setRule(Rule._ALT_LINE);
+        }
+        return true;
+    }
+
+    protected boolean checkRandomAltRule(Integer seed) {
+        setRule(Rule._RANDOM_ALT_LINE);
+        //TODO set extra param seed
+        return true;
+    }
+
+    protected boolean checkJoinRule(Integer col1, Integer col2) {
+        setRule(Rule._JOIN);
+        //TODO set extra params col1 & col2
+        return true;
+    }
+
+    protected boolean checkZipRule(String type, String sep) {
+        /*
+        switch (ZipMode.findByName(type)) {
+            case _CHAR: 
+                setRule(Rule._ZIP_CHAR);
+                break;
+            case _CELL: 
+                setRule(Rule._ZIP_CELL);
+                break;                
+            default:
+                setRule(Rule._ZIP_LINE);
+        }
+        */
+        //TODO set extra param sep
         return true;
     }
 
