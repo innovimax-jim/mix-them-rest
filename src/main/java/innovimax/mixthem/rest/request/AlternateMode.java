@@ -34,4 +34,13 @@ public enum AlternateMode {
         return st.toString();
     }
 
+   public static AlternateMode findByName(String name) {
+      for(AlternateMode mode : values()){
+        if (mode.getName().equals(name)) {
+           return mode;
+        }
+      }
+      return null;
+   }
+
 }
