@@ -10,7 +10,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 
-public class FileServiceImpl implements FileService {
+public class FileServiceImpl extends AbstractServiceImpl implements FileService {
 
     private final FileParamsCheck check = CheckFactory.getFileParamsCheck();
 
@@ -19,7 +19,7 @@ public class FileServiceImpl implements FileService {
         if (!check.addFromFile(file1InputStream, file1Detail, file2InputStream, file2Detail)) {
             return check.getErrorResponse();        
         } 
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return getStreamResponse(check.getRule(), file1InputStream, file2InputStream);
     }
 
     @Override
@@ -27,7 +27,7 @@ public class FileServiceImpl implements FileService {
         if (!check.altFromFile(type, file1InputStream, file1Detail, file2InputStream, file2Detail)) {
             return check.getErrorResponse();
         } 
-        return Response.status(Status.NOT_IMPLEMENTED).build();
+        return getStreamResponse(check.getRule(), file1InputStream, file2InputStream);
     }
 
     @Override
