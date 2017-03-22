@@ -7,7 +7,7 @@ info:
     name: Innovimax SARL
     url: http://www.innovimax.fr
     email: innovimax@gmail.com
-host: localhost
+host: localhost:8080
 schemes:
   - http
   - https
@@ -17,7 +17,6 @@ consumes:
     - multipart/form-data
     - text/plain
 produces:
-    - application/octet-stream
     - text/plain
     - application/json
 paths:
@@ -49,7 +48,7 @@ paths:
       consumes:
         - multipart/form-data
       produces:
-        - application/octet-stream
+        - text/plain
         - application/json
       parameters:
         - name: file1
@@ -87,7 +86,7 @@ paths:
       consumes:
         - multipart/form-data
       produces:
-        - application/octet-stream
+        - text/plain
         - application/json
       parameters:
         - name: type
@@ -131,7 +130,7 @@ paths:
       consumes:
         - multipart/form-data
       produces:
-        - application/octet-stream
+        - text/plain
         - application/json
       parameters:
         - name: seed
@@ -173,7 +172,7 @@ paths:
       consumes:
         - multipart/form-data
       produces:
-        - application/octet-stream
+        - text/plain
         - application/json
       parameters:
         - name: col1
@@ -224,7 +223,7 @@ paths:
       consumes:
         - multipart/form-data
       produces:
-        - application/octet-stream
+        - text/plain
         - application/json
       parameters:
         - name: type
